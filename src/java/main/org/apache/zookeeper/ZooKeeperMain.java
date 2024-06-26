@@ -34,6 +34,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 
+import jline.TerminalFactory;
 import org.apache.yetus.audience.InterfaceAudience;
 import org.apache.zookeeper.cli.CliException;
 import org.apache.zookeeper.cli.CommandNotFoundException;
@@ -308,6 +309,8 @@ public class ZooKeeperMain {
         if (cl.getCommand() == null) {
             System.out.println("Welcome to ZooKeeper!");
 
+            // window执行参数
+            jline.TerminalFactory.registerFlavor(TerminalFactory.Flavor.WINDOWS, jline.UnsupportedTerminal.class);
             boolean jlinemissing = false;
             // only use jline if it's in the classpath
             try {
